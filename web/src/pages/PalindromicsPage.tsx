@@ -10,11 +10,13 @@ const PalindromicsPage = (children: Element): JSX.Element => {
   const [res, setResponse] = useState();
 
   async function handleSubmit() {
-    const response = await api.post("/D1");
+    const { data } = await api.post("/D1", {
+      min,
+      max,
+    });
 
-    alert("sucesso");
-    setResponse(response.data);
-    console.log(response);
+    setResponse(data);
+    console.log(res);
   }
 
   return (

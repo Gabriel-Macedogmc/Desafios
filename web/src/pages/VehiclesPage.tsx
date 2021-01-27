@@ -19,18 +19,22 @@ const VehiclesPage = (children: Element): JSX.Element => {
   // passagers,
 
   const [model, setModel] = useState<string>("");
-  const [year, setYear] = useState<string>("");
-  const [doors, setDoors] = useState<string>("");
+  const [year, setYear] = useState<number>(0);
+  const [doors, setDoors] = useState<number>(0);
   const [brand, setBrand] = useState<string>("");
 
   const [res, setResponse] = useState<ICar>();
 
   async function handleSubmit() {
-    const response = await api.post("/D3/car");
+    const { data } = await api.post("/D3/car", {
+      model,
+      year_manufacture: year,
+      doors,
+      brand,
+    });
 
-    setResponse(response.data);
+    setResponse(data);
     console.log(res);
-    alert("sucesso");
   }
   return (
     <>
@@ -50,8 +54,8 @@ const VehiclesPage = (children: Element): JSX.Element => {
         <div className="container-inputs">
           <input
             value={year}
-            onChange={(event) => setYear(event.target.value)}
-            type="text"
+            onChange={(event) => setYear(event.target.valueAsNumber)}
+            type="number"
             placeholder=" "
             required
           />
@@ -60,8 +64,8 @@ const VehiclesPage = (children: Element): JSX.Element => {
         <div className="container-inputs">
           <input
             value={doors}
-            onChange={(event) => setDoors(event.target.value)}
-            type="text"
+            onChange={(event) => setDoors(event.target.valueAsNumber)}
+            type="number"
             placeholder=" "
             required
           />

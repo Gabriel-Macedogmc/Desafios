@@ -11,7 +11,7 @@ export const Container = styled.div`
   transition: all 0.3s;
 
   .container-inputs {
-    margin-top: 1em;
+    margin-top: 2em;
     margin-left: 1em;
   }
   .container-inputs input {
@@ -106,33 +106,31 @@ export const Container = styled.div`
   }
 
   .container-result {
-    width: 100%;
-    min-height: 7vh;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-image: linear-gradient(
-      to right top,
-      #6a29ff,
-      #8b22fa,
-      #a51bf5,
-      #bc15f0,
-      #cf12eb
-    );
-  }
-
-  .result {
+    width: 80%;
+    height: 12vh;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-top: 3em;
   }
+  .result {
+    width: 245px;
+    height: 2vh;
+  }
+
   .result p {
-    margin-left: 1em;
+    margin-left: 5px;
+    margin-bottom: 5px;
     border: 1px solid lightgrey;
     border-radius: 5px;
     padding: 1em;
-    font-size: 1.5em;
-    color: #fff;
+    font-size: 1em;
+    color: #000;
+    font-weight: 700;
   }
   .result p:hover {
     color: #aeb4b5;

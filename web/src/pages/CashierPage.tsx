@@ -18,10 +18,12 @@ const CashierPage = (children: Element): JSX.Element => {
 
   async function handleSubmit() {
     try {
-      const res = await api.post("/D2");
-      setResponse(res.data);
+      const { data } = await api.post("/D2", {
+        amount_paid,
+        price,
+      });
+      setResponse(data);
       console.log(response);
-      alert("sucesso");
     } catch (error) {
       console.log(error);
     }
@@ -34,8 +36,8 @@ const CashierPage = (children: Element): JSX.Element => {
         <div className="container-inputs">
           <input
             type="number"
-            value={amount_paid}
-            onChange={(event) => setAmount(event.target.valueAsNumber)}
+            value={price}
+            onChange={(event) => setPrice(event.target.valueAsNumber)}
             placeholder="Digite o Valor da compra"
             required
           />
@@ -44,8 +46,8 @@ const CashierPage = (children: Element): JSX.Element => {
 
         <div className="container-inputs">
           <input
-            value={price}
-            onChange={(event) => setPrice(event.target.valueAsNumber)}
+            value={amount_paid}
+            onChange={(event) => setAmount(event.target.valueAsNumber)}
             type="number"
             placeholder=" "
             required
@@ -67,13 +69,13 @@ const CashierPage = (children: Element): JSX.Element => {
               <p>Troco: R${response?.troco}</p>
             </div>
             <div className="border-result">
-              <p>Notas de R$100: {response?.nota100}</p>
+              <p>{response?.nota100} x R$100 </p>
             </div>
             <div className="border-result">
-              <p>Notas de R$10: {response?.nota10}</p>
+              <p>{response?.nota10} x R$10</p>
             </div>
             <div className="border-result">
-              <p>Notas de R$: {response?.nota1}</p>
+              <p>{response?.nota1} x R$1</p>
             </div>
           </div>
         </footer>
