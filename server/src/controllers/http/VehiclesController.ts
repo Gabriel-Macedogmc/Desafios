@@ -7,40 +7,23 @@ export default class VehiclesController {
   public createCar(req: Request, res: Response): Response {
     const { model, year_manufacture, doors, brand } = req.body;
 
-    const car = new Car(model, year_manufacture, doors, brand);
+    const car = new Car();
+    const result = car.car({ model, year_manufacture, doors, brand });
 
-    if (doors < 2 || doors > 4) {
-      return res.json(
-        new AppError('Número de portas insuficiente ou além do limite', 400),
-      );
-    }
-
-    const json = JSON.stringify(car, null, 2);
-    fs.writeFileSync('src/bd/cars.json', json);
-
-    return res.status(201).json(car);
+    return res.status(201).json(result);
   }
   public createMotor(req: Request, res: Response): Response {
-    const { model, passagers, brand, year_manufacture, wheels } = req.body;
+    const { model, year_manufacture, wheels, passagers, brand } = req.body;
 
-    const motor = new Motor(model, passagers, brand, year_manufacture, wheels);
-
-    const dataMoto = [motor];
-
-    if (wheels < 2 || wheels > 2 || passagers > 2) {
-      return res.json(
-        new AppError(
-          'Moto com o numero minimo de rodas abaixo do padrão ou passageiros acima do limite',
-          400,
-        ),
-      );
-    }
-
-    const json = JSON.stringify(dataMoto, null, 2);
-    fs.writeFileSync('src/bd/motor.json', json);
-
-    return res.json({
-      motor,
+    const motor = new Motor();
+    const result = motor.motor({
+      model,
+      year_manufacture,
+      wheels,
+      passagers,
+      brand,
     });
+
+    return res.json(result);
   }
 }

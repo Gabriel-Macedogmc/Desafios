@@ -1,7 +1,7 @@
-[
-  {
-    "model": "test",
-    "wheels": "chevrolet",
-    "passagers": 19280
-  }
-]
+{
+  "model": "same_model",
+  "year_manufacture": 2001,
+  "wheels": 2,
+  "passagers": 2,
+  "brand": "same_brand"
+}

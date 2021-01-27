@@ -1,3 +1,4 @@
+import AppError from '@/errors/appError';
 import axios from 'axios';
 
 export default class CEPService {
@@ -9,6 +10,9 @@ export default class CEPService {
     cep5: string,
   ) {
     const CEPS = [cep, cep2, cep3, cep4, cep5];
+    if (!CEPS) {
+      new AppError('Ceps não podem ser indefinidos');
+    }
     const promise = CEPS.map(async cep => {
       try {
         const { data } = await axios.get(`http://viacep.com.br/ws/${cep}/json`);
