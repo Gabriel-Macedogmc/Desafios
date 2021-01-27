@@ -1,1 +1,6 @@
-{}
+{
+  "model": "astra cd",
+  "brand": "chevrolet",
+  "year_manufacture": 2001,
+  "doors": 4
+}

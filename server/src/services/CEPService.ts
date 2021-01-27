@@ -11,10 +11,10 @@ export default class CEPService {
     const CEPS = [cep, cep2, cep3, cep4, cep5];
     const promise = CEPS.map(async cep => {
       try {
-        const response = await axios.get(`http://viacep.com.br/ws/${cep}/json`);
-        console.log(response.data);
+        const { data } = await axios.get(`http://viacep.com.br/ws/${cep}/json`);
+        console.log(data);
         console.log(cep);
-        return response.data;
+        return data;
       } catch (error) {
         console.log(error);
       }

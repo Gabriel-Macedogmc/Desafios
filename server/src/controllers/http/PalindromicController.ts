@@ -8,6 +8,7 @@ export default class PalindromicController {
     const palindromicService = new PalindromicService();
     const palindromic = palindromicService.checkPalindromic({ min, max });
 
+    console.log(palindromic);
     return res.status(201).json(palindromic);
   }
 }

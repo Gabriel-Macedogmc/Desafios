@@ -12,5 +12,5 @@ routes.get('/', (req, res) => {
 routes.use('/', palindromicRouter);
 routes.use('/', cahsierRouter);
 routes.use('/', vehiclesRouter);
-routes.use('/cep', cepRouter);
+routes.use('/', cepRouter);
 export default routes;

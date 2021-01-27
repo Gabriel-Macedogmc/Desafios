@@ -14,12 +14,13 @@ export default class PalindromicService {
 
   private palindromicNumbers: Array<number> = [];
 
-  checkPalindromic({ min, max }: IRequest): number[] | undefined {
+  public checkPalindromic({ min, max }: IRequest) {
     for (min = 0; min <= max; min += 1) {
       const compare = this.isPalindromic(min);
       if (compare) {
         const revert = [compare];
-        return revert;
+        console.log(revert);
+        return revert.map(element => element);
       }
     }
   }

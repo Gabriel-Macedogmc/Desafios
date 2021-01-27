@@ -7,7 +7,9 @@ export default class CEPController {
 
     const cepService = new CEPService();
     const test = [];
-    const CEP = cepService.retunJSON(cep, cep2, cep3, cep4, cep5);
+    const CEP = await cepService
+      .retunJSON(cep, cep2, cep3, cep4, cep5)
+      .then(res => res);
 
     console.log(CEP);
 
