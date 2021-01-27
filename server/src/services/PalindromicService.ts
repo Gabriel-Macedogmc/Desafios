@@ -1,15 +1,17 @@
+import AppError from '@/errors/appError';
+
 interface IRequest {
   min: number;
   max: number;
 }
 
 export default class PalindromicService {
-  isPalindromic(num: number): number | undefined {
+  isPalindromic(num: number) {
     const reverse = parseInt(num.toString().split('').reverse().join(''));
-
     if (reverse === num) {
       return num;
     }
+    return new AppError('nao e um numero palindromic');
   }
 
   private palindromicNumbers: Array<number> = [];
