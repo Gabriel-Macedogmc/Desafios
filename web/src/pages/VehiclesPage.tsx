@@ -3,27 +3,25 @@ import api from "../api";
 import Header from "../components/Header";
 import { Container } from "../styles/VehiclesPage";
 
-interface ICar {
+interface IVehicle {
   model: string;
   year_manufacture: number;
   doors: number;
   brand: string;
+  passagers?: number;
+  wheels?: number;
 }
 
 const VehiclesPage = (children: Element): JSX.Element => {
-  // model,
-  // year_manufacture,
-  // doors,
-  // brand,
-  // wheels,
-  // passagers,
-
   const [model, setModel] = useState<string>("");
   const [year, setYear] = useState<number>(0);
   const [doors, setDoors] = useState<number>(0);
+  const [passagers, setPassagers] = useState<number>(0);
+  const [wheels, setWheels] = useState<number>(0);
   const [brand, setBrand] = useState<string>("");
 
-  const [res, setResponse] = useState<ICar>();
+  const [open, setOpen] = useState<boolean>(false);
+  const [res, setResponse] = useState<IVehicle>();
 
   async function handleSubmit() {
     const { data } = await api.post("/D3/car", {
@@ -35,6 +33,18 @@ const VehiclesPage = (children: Element): JSX.Element => {
 
     setResponse(data);
     console.log(res);
+  }
+
+  async function handleSubmitMotor() {
+    const { data } = await api.post("/D3/motor", {
+      model,
+      year_manufacture: year,
+      wheels,
+      passagers,
+      brand,
+    });
+    setOpen(true);
+    setResponse(data);
   }
   return (
     <>
@@ -61,6 +71,7 @@ const VehiclesPage = (children: Element): JSX.Element => {
           />
           <label>Fabricação</label>
         </div>
+
         <div className="container-inputs">
           <input
             value={doors}
@@ -81,13 +92,44 @@ const VehiclesPage = (children: Element): JSX.Element => {
           />
           <label>Marca</label>
         </div>
+        <div className="container-inputs">
+          <input
+            value={passagers}
+            onChange={(event) => setPassagers(event.target.valueAsNumber)}
+            type="number"
+            placeholder=" "
+            required
+          />
+          <label>Passageiros</label>
+        </div>
+        <div className="container-inputs">
+          <input
+            value={wheels}
+            onChange={(event) => setWheels(event.target.valueAsNumber)}
+            type="number"
+            placeholder=" "
+            required
+          />
+          <label>Rodas</label>
+        </div>
 
         <div className="container-button">
-          <button onClick={() => handleSubmit()}>Salvar</button>
+          <button onClick={() => handleSubmit()}>Salvar Carro</button>
+          <button onClick={() => handleSubmitMotor()}>Salvar Moto</button>
         </div>
 
         <footer className="container-result">
           <div className="result">
+            {open && (
+              <>
+                <div className="border-result">
+                  <p>Passageiros: {res?.passagers}</p>
+                </div>
+                <div className="border-result">
+                  <p>Rodas: {res?.wheels}</p>
+                </div>
+              </>
+            )}
             <div className="border-result">
               <p>Modelo: {res?.model}</p>
             </div>

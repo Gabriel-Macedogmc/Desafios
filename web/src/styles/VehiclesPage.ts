@@ -4,7 +4,7 @@ export const Container = styled.div`
   width: 100%;
   min-height: 100%;
   display: flex;
-  padding: 5em;
+  // padding: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,7 +13,7 @@ export const Container = styled.div`
   transition: all 0.3s;
 
   .container-inputs {
-    margin-top: 1em;
+    margin-top: 5px;
   }
   .container-inputs input {
     ::-webkit-inner-spin-button,
@@ -85,11 +85,14 @@ export const Container = styled.div`
   }
 
   .container-button {
+    padding-left: 5px;
     margin-top: 1em;
+    margin-left: 5px;
   }
 
   .container-button button {
     min-width: 300px;
+    margin-left: 1em;
     min-height: 45px;
     border-color: #854fff;
     background-color: #854fff;
